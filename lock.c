@@ -48,7 +48,7 @@ bool acquire_lock() {
 	}
 	if (flock(fd, LOCK_EX|LOCK_NB)) {
 		fprintf(stderr, "another slurp process is running for this wayland session\n");
-		return false;
+		return true;
 	}
 	return true;
 }
