@@ -553,6 +553,13 @@ static void destroy_output(struct slurp_output *output) {
 	}
 	wl_surface_destroy(output->surface);
 	wl_output_destroy(output->wl_output);
+		if (output->frame_callback) {
+
+
+		wl_callback_destroy(output->frame_callback);
+
+
+	}
 	free(output->logical_geometry.label);
 	free(output);
 }
