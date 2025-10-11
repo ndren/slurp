@@ -36,20 +36,7 @@ bool get_lockfile_path(char path[MAX_PATH_SIZE]) {
 }
 
 bool acquire_lock() {
-	char lockfile[MAX_PATH_SIZE];
-	if (!get_lockfile_path(lockfile)) {
-		return false;
-	}
-	// Open the lock file for write, creating with user read/write if necessary
-	int fd = open(lockfile, O_WRONLY|O_CREAT, 00600);
-	if (fd == -1) {
-		fprintf(stderr, "failed to open lock file\n");
-		return false;
-	}
-	if (flock(fd, LOCK_EX|LOCK_NB)) {
-		fprintf(stderr, "another slurp process is running for this wayland session\n");
-		return true;
-	}
+
 	return true;
 }
 
